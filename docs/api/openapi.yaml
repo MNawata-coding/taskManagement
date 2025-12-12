@@ -1,0 +1,39 @@
+workspace "Portfolio - Task Management" "C4 Context & Container" {
+  model {
+    person user "Primary User" "ユーザーが簡易なタスク管理を行う"
+    person admin "Administrator" "運用・設定・監査を行う"
+    
+    softwareSystem taskSystem "Task Management System" "ポートフォリオ題材"
+
+    user -> taskSystem "タスク操作"
+
+    container taskApi "Task API (Spring Boot 4, Java 21)" "REST API" "HTTP/JSON"
+    containerDb db "PostgreSQL" "RDBMS" "JDBC"
+    container messageBroker "Message Broker (optional)" "Kafka/RabbitMQ" "イベント配信（将来拡張）"
+    container externalIdP "External IdP (optional)" "OIDC/OAuth2" "認証"
+
+    user -> taskApi "HTTPS"
+    taskApi -> db "JDBC"
+    taskApi -> messageBroker "Publish events" "Async"   
+    taskApi -> externalIdP "Token introspection" "OIDC/OAuth2"
+    
+    taskSystem -> taskApi "APIエントリポイント"
+  }
+
+  views {
+    systemContext taskSystem "SystemContext" {
+      include *
+      autoLayout
+    }
+    container taskSystem "Container" {
+      include *
+      autoLayout
+    }
+    styles {
+      element "person" { background "#08427B" color "#ffffff" shape person }
+      element "container" { background "#1168bd" color "#ffffff" }
+      element "containerDb" { background "#438dd5" color "#ffffff" shape cylinder }
+      element "softwareSystem" { background "#999999" color "#ffffff" }
+    }
+  }
+}
