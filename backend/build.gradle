@@ -19,11 +19,36 @@ repositories {
 }
 
 dependencies {
+	// spring starter
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// junit
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// mysql
+	runtimeOnly 'com.mysql:mysql-connector-j:9.5.0'
+	//StringUtils
+	implementation 'org.apache.commons:commons-lang3:3.20.0'
+	// flyway
+	// implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
+	// boot4の場合starterが必要　かつ ./gradlew bootrunで直接実行する必要がある
+	implementation 'org.springframework.boot:spring-boot-starter-flyway'
+    testImplementation 'org.springframework.boot:spring-boot-starter-flyway-test' // 必要に応じて追加
+	// asset-j
+	implementation 'org.assertj:assertj-core:4.0.0-M1'
+	// lombok
+	compileOnly 'org.projectlombok:lombok:1.18.42'
+	annotationProcessor  'org.projectlombok:lombok:1.18.42'
+	testCompileOnly "org.projectlombok:lombok:1.18.42"
+	testAnnotationProcessor "org.projectlombok:lombok:1.18.42"
+
+	// google guava
+	implementation "com.google.guava:guava:33.5.0-jre"	
 }
 
 tasks.named('test') {

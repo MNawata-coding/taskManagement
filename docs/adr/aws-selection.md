@@ -3,11 +3,11 @@
 日付: 2025-12-12
 ステータス: proposed
 Context
-- 実務で一般的なトークンベースの外部連携を想定し、標準的な方法で保護されたAPIを示したい。
+- ポートフォリオとしてawsとspringbootの連携機能機能を示す
 制約
 - 個人開発・短期
 決定（Decision）
-- Spring SecurityのOAuth2 Resource Server（JWT）を採用。issuer-uriベースの自動設定で署名検証とiss/exp/nbf等の検証を行う。
+- apiGateway, s3, 
 代替案（評価）
 - セッション+Cookie: 同一オリジンWeb向けには実務上有効だが、APIポートフォリオの訴求としては汎用性が劣るため不採用。
 - APIキー: 実装は容易だが権限管理や失効、監査の観点で弱い。
