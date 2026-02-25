@@ -63,7 +63,6 @@ public class TaskController {
      * タスクを登録する
      * @param dto
      * @return
-     * ssh-keygen -t ed25519 -C "nam.man344@gmail.com"
      */
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody @Valid RegisterTaskRequestDto dto){
