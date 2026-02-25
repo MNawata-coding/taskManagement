@@ -2,12 +2,15 @@ package com.example.demo.dto.requestDto;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * タスク登録用DTO
  * @param taskName タスク名
  * @param createDate 作成日時
  */
 public record RegisterTaskRequestDto(
+    @NotBlank
     String taskName,
     LocalDateTime createDate
 ) {
