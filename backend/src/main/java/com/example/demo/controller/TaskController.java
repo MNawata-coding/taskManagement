@@ -23,7 +23,6 @@ import com.example.demo.service.GetTaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-
 @RestController
 @RequestMapping("/test")
 @RequiredArgsConstructor
@@ -48,7 +47,7 @@ public class TaskController {
     public ResponseEntity<String> getNotFoundTest(@PathVariable Long id) {
 
         // 404:リソースが存在しない場合に発生
-        if(id != 1){
+        if (id != 1) {
             throw new TodoNotFoundException();
         }
 
@@ -61,11 +60,12 @@ public class TaskController {
 
     /**
      * タスクを登録する
+     *
      * @param dto
      * @return
      */
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody @Valid RegisterTaskRequestDto dto){
+    public ResponseEntity<String> save(@RequestBody @Valid RegisterTaskRequestDto dto) {
         System.out.println("タスク登録");
         crateService.addTask(dto);
 
@@ -74,13 +74,13 @@ public class TaskController {
         // 作成された場合、ステータスコード201を返却する
         // locationで指定されたページにアクセスする新しいリクエストを生成するためにlocationを指定する
         return ResponseEntity
-            .created(location)
-            .body("success::create");
+                .created(location)
+                .body("success::create");
 
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         deleteTaskServce.deleteTaskById(id);
     }
 }
