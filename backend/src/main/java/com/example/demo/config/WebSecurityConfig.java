@@ -14,5 +14,5 @@ public class WebSecurityConfig implements WebMvcConfigurer {
         .allowedHeaders("Content-Type","*")
         .allowedMethods("GET","POST","OPTIONS", "DELETE");
         // .allowCredentials(true);
-    }    
+    }
 }

@@ -1,31 +1,9 @@
-# syntax=docker/dockerfile:1
-
-# ===== ビルド用 =====
-FROM gradle:8.10.2-jdk21 AS builder
-WORKDIR /app
-
-# 依存関係キャッシュを効かせるため先にコピー
-COPY build.gradle settings.gradle gradlew ./
-COPY gradle ./gradle
-
-RUN chmod +x gradlew
-
-# 依存ダウンロード（キャッシュ用）
-RUN ./gradlew dependencies --no-daemon || true
-
-# ソースコードコピー
-COPY src ./src
-
-# ビルド
-RUN ./gradlew bootJar --no-daemon
-
-# ===== 実行用 =====
 FROM eclipse-temurin:21-jre
+
 WORKDIR /app
 
-# jarコピー
-COPY --from=builder /app/build/libs/*.jar app.jar
+COPY build/libs/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
